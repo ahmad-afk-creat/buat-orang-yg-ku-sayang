@@ -1,0 +1,1 @@
+# buat-orang-yg-ku-sayang
