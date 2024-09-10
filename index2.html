@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misteri</title>
+
+    <!-- Import Google Font -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Pacifico&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #f53ccd, #48ebf1);
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            margin: 0;
+            overflow: hidden;
+            animation: fadeInBackground 2s ease-in-out;
+            cursor: url('path/to/your/custom-cursor.png'), auto;
+        }
+
+        @keyframes fadeInBackground {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+            padding: 10px 0;
+            color: #ffffff;
+            text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.3);
+            animation: slideInFromTop 1s ease-out;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 15px 0;
+            color: #f0f0f0;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .cake {
+            font-size: 100px;
+            color: #ffffff;
+            margin: 20px 0;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .button {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 30px;
+            font-size: 1em;
+            color: #ffffff;
+            background-color: #00ccff;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(253, 251, 251, 0.2);
+        }
+
+        .button:hover {
+            background-color: #ffbed3;
+            transform: scale(1.05);
+        }
+
+        /* Modal Styling */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(14, 13, 13, 0.7);
+            animation: fadeInModal 0.5s forwards ease;
+        }
+       
+/* Styling umum untuk modal */
+.modal {
+    display: none; /* Modal tidak ditampilkan secara default */
+    position: fixed; 
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4); /* Background gelap */
+}
+
+.modal-content {
+    background: linear-gradient(to bottom right, #ffffff, #f0f0f0);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border: none;
+    width: 90%;
+    max-width: 400px;
+    border-radius: 15px;
+    box-shadow: 0 8px 16px rgba(248, 247, 247, 0.3);
+    text-align: center; /* Pusatkan teks di dalam modal */
+    box-sizing: border-box; /* Pastikan padding tidak mempengaruhi lebar */
+    animation: zoomIn 0.5s forwards ease;
+    overflow: hidden;
+}
+
+
+/* Styling untuk tombol close (x) */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover, .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Styling untuk tombol WhatsApp */
+.modal-button {
+    background-color: #25d366; /* Warna hijau khas WhatsApp */
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
+
+.modal-button:hover {
+    background-color: #1ebe54; /* Warna hijau lebih gelap saat dihover */
+}
+
+/* Styling untuk GIF container */
+.gif-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.gif-container img {
+    width: 100px;
+    height: auto;
+    border-radius: 50%; /* Memberi efek lingkaran pada gambar */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Bayangan halus */
+}
+
+/* Media query untuk tampilan lebih kecil */
+@media (max-width: 600px) {
+    .modal-content {
+        width: 95%; /* Menyesuaikan lebar modal untuk layar kecil */
+    }
+
+    .modal-button {
+        width: 100%; /* Membuat tombol memenuhi lebar modal pada layar kecil */
+    }
+}
+
+
+        .modal-content {
+            background: linear-gradient(to bottom right, #ffffff, #f0f0f0);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 20px;
+            border: none;
+            width: 90%;
+            max-width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(248, 247, 247, 0.3);
+            text-align: left;
+            opacity: 0;
+            animation: zoomIn 0.5s forwards ease;
+        }
+
+        .modal-content h2, .modal-content h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: #333;
+            text-align: center;
+        }
+
+        .gif-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .gif-container img {
+            width: 50%;
+            max-width: 120px;
+            height: auto;
+            animation: fadeIn 2s ease-in-out;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInModal {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+            to { transform: translate(-50%, -50%) scale(1); opacity: 1; }
+        }
+
+        @keyframes slideInFromTop {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: #333;
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .modal-buttons .button {
+            width: 48%;
+            background-color: #0084ff;
+        }
+
+        .modal-buttons .button:hover {
+            background-color: #006bb3;
+        }
+
+        /* Confetti animation */
+        .confetti {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+
+        .confetti div {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: red; /* Default color, will be overridden by JS */
+            opacity: 0.7;
+            border-radius: 50%;
+        }
+
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .cake {
+                font-size: 80px;
+            }
+
+            p {
+                font-size: 1em;
+            }
+
+            .button {
+                font-size: 1em;
+                padding: 8px 15px;
+            }
+
+            .modal-content {
+                width: 95%;
+                max-width: 350px;
+            }
+        }
+
+        /* Notifikasi Styling */
+        .notification {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #ffffff;
+            color: #333;
+            padding: 20px 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            display: none;
+            z-index: 10000;
+            width: 80%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .notification button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1em;
+            color: #ffffff;
+            background-color: #00ccff;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .notification button:hover {
+            background-color: #ffbed3;
+            transform: scale(1.05);
+        }
+
+        /* Typing Animation Styling */
+        .typing-animation {
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 4px solid #ffffff;
+            animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
+            font-size: 1.5em;
+            margin-top: 20px;
+            color: #ffffff;
+        }
+
+        @keyframes typing {
+            from { width: 0; }
+            to { width: 100%; }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent; }
+            50% { border-color: #ffffff; }
+        }
+        
+    </style>
+
+</head>
+<body>
+    <h1>🎉 Selamat Ulang Tahun, Dela Melisa 🎉</h1>
+    <p>‎ </p>
+    <p>‎ </p>
+    <p>‎ </p>
+    <div class="gif-container">
+        <img src="path/to/your/cat-love.gif" alt="GIF">
+    </div>
+   
+    <p>Semoga hari-harimu dipenuhi dengan kebahagiaan, cinta, dan kesuksesan. Ingatlah selalu, hari ini adalah tentangmu—dan betapa istimewanya kamu di mata ku.</p>
+    
+    <div class="message">
+        <p>Ini ada misteri buat mu</p>
+    </div>
+
+    <button class="button" id="openModalBtn">BUKA🎁</button>
+
+    <!-- Modal Pertama -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeModalBtn">&times;</span>
+            <div class="gif-container">
+                <img src="path/to/your/animasi-bergerak-kucing-lucu-gif-37.gif" alt="GIF">
+            </div>
+            <h2>Siapa ni yang ulang tahun 😁🥳</h2>
+            
+            <div class="modal-buttons">
+               <button class="button" id="openSecondModalBtn">Berikutnya</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Kedua -->
+    <div id="secondModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeSecondModalBtn">&times;</span>
+            <div class="gif-container">
+                <img src="path/to/your/scary.gif" alt="GIF">
+            </div>
+            <h2>Coba aja kita bisa bertemu bisa tuh aku bawakan telur hijau ,buat ngelempar kamu hehehe🤣</h2>
+           
+            <div class="modal-buttons">
+                <button class="button" id="openThirdModalBtn">Berikutnya</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Ketiga -->
+    <div id="thirdModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeThirdModalBtn">&times;</span>
+            <div class="gif-container">
+                <img src="path/to/your/8521b330ec35f7b604ba991ac34f539d.gif" alt="GIF">
+            </div>
+            <h2>Bercanda" hehehe😜</h2>
+            
+            <button class="button" id="openFourthModalBtn">Berikutnya</button>
+        </div>
+    </div>
+
+    <!-- Modal Keempat -->
+    <div id="fourthModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeFourthModalBtn">&times;</span>
+            <div class="gif-container">
+                <img src="path/to/your/cute.gif" alt="GIF">
+            </div>
+            <h2>Mau kado ndak ni 🎁</h2>
+            
+            <div class="modal-buttons">
+                <button class="button" id="openFifthModalBtn">Mauu</button>
+                <button class="button" id="showNotificationBtn">Ndak</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Kelima -->
+    <div id="fifthModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeFifthModalBtn">&times;</span>
+            <div class="gif-container">
+                <img src="path/to/your/mudoh.gif" alt="GIF">
+            </div>
+            <h2>ndak da ndak da bangkrut aku😭😭</h2>
+          
+            <button class="button" id="openSixthModalBtn">Berikutnya</button>
+        </div>
+    </div>
+
+   <!-- Modal Keenam -->
+   <div id="sixthModal" class="modal">
+       <div class="modal-content">
+           <span class="close" id="closeSixthModalBtn">&times;</span>
+           <div class="gif-container">
+               <img src="path/to/your/begging-cat-cat.gif" alt="GIF">
+           </div>
+           <h2>Becanda aja kok hehehe😜</h2>
+           
+           <button class="button" id="openSeventhModalBtn">Berikutnya</button>
+       </div>
+   </div>
+
+   <!-- Modal Ketujuh -->
+   <div id="seventhModal" class="modal">
+       <div class="modal-content">
+           <span class="close" id="closeSeventhModalBtn">&times;</span>
+           <div class="gif-container">
+               <img src="path/to/your/hug.gif" alt="GIF">
+           </div>
+           <h2>Selamat ulang tahun ya Dela ,Semoga kamu di beri umur yang panjang dan sehat selalu </h2>
+           
+           <button class="button" id="openEighthModalBtn">Berikutnya</button>
+       </div>
+   </div>
+<!-- Modal Kedelapan -->
+<div id="eighthModal" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeEighthModalBtn">&times;</span>
+        <div class="gif-container">
+            <img src="path/to/your/chibi-cat-mochi-cat.gif" alt="GIF">
+        </div>
+        <h2>dan semoga kamu sukses terus untuk kedepannya supaya kedua orang tua kamu bangga dengan kamu</h2>
+        <button class="modal-button" id="whatsappBtn">Balas pesan di WhatsApp</button>
+    </div>
+</div>
+
+<script>
+    // Ganti nomor telepon dan pesan sesuai kebutuhan
+    const whatsappNumber = '082158667757'; // Masukkan nomor tujuan dengan format internasional (tanpa +)
+    const whatsappMessage = encodeURIComponent("Terimakasih atas ucapannya Horee"); // Pesan yang ingin diisikan secara otomatis
+
+    document.getElementById('whatsappBtn').onclick = function() {
+    const whatsappLink = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${whatsappMessage}`;
+    window.open(whatsappLink, '_blank'); // Buka WhatsApp di tab baru
+};
+
+</script>
+
+           
+       </div>
+   </div>
+
+   <!-- Notifikasi -->
+   <div id="notification" class="notification">
+       <div class="gif-container">
+           <img src="path/to/your/10.gif" alt="GIF">
+       </div>
+       <h2>Yakin kamu ndak mau kado</h2>
+       <button id="closeNotificationBtn">Tutup</button>
+   </div>
+
+   <div class="confetti" id="confetti"></div>
+
+   <script>
+    
+       // Modal Controls
+       function openModal(modalId) {
+           document.getElementById(modalId).style.display = 'block';
+       }
+
+       function closeModal(modalId) {
+           document.getElementById(modalId).style.display = 'none';
+       }
+
+       document.getElementById('openModalBtn').addEventListener('click', () => openModal('myModal'));
+       document.getElementById('closeModalBtn').addEventListener('click', () => closeModal('myModal'));
+       document.getElementById('openSecondModalBtn').addEventListener('click', () => {
+           closeModal('myModal');
+           openModal('secondModal');
+       });
+       document.getElementById('closeSecondModalBtn').addEventListener('click', () => closeModal('secondModal'));
+       document.getElementById('openThirdModalBtn').addEventListener('click', () => {
+           closeModal('secondModal');
+           openModal('thirdModal');
+       });
+       document.getElementById('closeThirdModalBtn').addEventListener('click', () => closeModal('thirdModal'));
+       document.getElementById('openFourthModalBtn').addEventListener('click', () => {
+           closeModal('thirdModal');
+           openModal('fourthModal');
+       });
+       document.getElementById('closeFourthModalBtn').addEventListener('click', () => closeModal('fourthModal'));
+       document.getElementById('openFifthModalBtn').addEventListener('click', () => {
+           closeModal('fourthModal');
+           openModal('fifthModal');
+       });
+       document.getElementById('showNotificationBtn').addEventListener('click', () => {
+           openModal('notification');
+       });
+       document.getElementById('closeNotificationBtn').addEventListener('click', () => closeModal('notification'));
+       document.getElementById('closeFifthModalBtn').addEventListener('click', () => closeModal('fifthModal'));
+       document.getElementById('openSixthModalBtn').addEventListener('click', () => {
+           closeModal('fifthModal');
+           openModal('sixthModal');
+       });
+       document.getElementById('closeSixthModalBtn').addEventListener('click', () => closeModal('sixthModal'));
+       document.getElementById('openSeventhModalBtn').addEventListener('click', () => {
+           closeModal('sixthModal');
+           openModal('seventhModal');
+       });
+       document.getElementById('closeSeventhModalBtn').addEventListener('click', () => closeModal('seventhModal'));
+       document.getElementById('openEighthModalBtn').addEventListener('click', () => {
+           closeModal('seventhModal');
+           openModal('eighthModal');
+       });
+       document.getElementById('closeEighthModalBtn').addEventListener('click', () => closeModal('eighthModal'));
+   </script>
+</body>
+</html>
